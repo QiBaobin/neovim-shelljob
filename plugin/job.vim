@@ -70,7 +70,9 @@ endfunction
 function! s:Clean(bang) abort
   for [next_key, next_val] in items(s:jobs)
     if next_val['status'] =~ 'Finished'
-      exe 'bdelete ' next_val['file']
+      if bufexists(next_val['file']
+        exe 'bdelete ' next_val['file']
+      endif
       if a:bang != ''
         exe '!rm ' next_val['file']
       endif
