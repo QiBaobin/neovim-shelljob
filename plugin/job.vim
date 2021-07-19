@@ -56,7 +56,7 @@ endfunction
 function! s:Start(cmd, bang) abort
   call mkdir(g:asyncjob_dir, "p", 0700)
 
-  let file = g:asyncjob_dir . '/' . substitute(a:cmd,' .*','','') . strftime("@%T")
+  let file = g:asyncjob_dir . '/' . substitute(a:cmd,' ','_','g') . strftime("@%T")
   let job = jobstart(a:cmd . " 2>&1 | tee '" . file . "'", s:callbacks)
 
   if job <= 0
